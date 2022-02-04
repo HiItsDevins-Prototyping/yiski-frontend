@@ -1,5 +1,23 @@
 import dearpygui.dearpygui as dpg
 
+def discordStart():
+    print("Started Discord")
+
+def discordRestart():
+    print("Restarted Discord")
+
+def discordEnd():
+    print("Ended Discord")
+
+def revoltStart():
+    print("Started Revolt")
+
+def revoltRestart():
+    print("Restarted Revolt")
+
+def revoltEnd():
+    print("Ended Revolt")
+
 dpg.create_context()
 
 with dpg.window(tag="Welcome", width=1265, height=8, no_close=True, no_resize=True, no_collapse=True, no_title_bar=True,
@@ -66,9 +84,20 @@ with dpg.window(tag="Yiski", width=1265, height=650, no_resize=True, no_close=Tr
                             color=(184, 181, 74, 255))
                     dpg.add_spacer(height=8)
                     with dpg.group(horizontal=True):
-                        dpg.add_button(tag="discordStartButton", label="Start Bot")
-                        dpg.add_button(tag="discordReloadButton", label="Reload Bot")
-                        dpg.add_button(tag="discordStopButton", label="End Bot")
+                        sDButton = dpg.add_button(label="Start Discord")
+                        rDButton = dpg.add_button(label="Reload Discord")
+                        eDButton = dpg.add_button(label="End Discord")
+
+                    with dpg.item_handler_registry() as sDHandler:
+                        dpg.add_item_clicked_handler(callback=discordStart)
+                    with dpg.item_handler_registry() as rDHandler:
+                        dpg.add_item_clicked_handler(callback=discordRestart)
+                    with dpg.item_handler_registry() as eDHandler:
+                        dpg.add_item_clicked_handler(callback=discordEnd)
+
+                    dpg.bind_item_handler_registry(sDButton, sDHandler)
+                    dpg.bind_item_handler_registry(rDButton, rDHandler)
+                    dpg.bind_item_handler_registry(eDButton, eDHandler)
 
                 with dpg.child_window(label="Yiski Revolt", width=620, height=610):
                     dpg.add_text("Handle the Revolt end of Yiski here")
@@ -155,9 +184,21 @@ with dpg.window(tag="Yiski", width=1265, height=650, no_resize=True, no_close=Tr
                             color=(184, 181, 74, 255))
                     dpg.add_spacer(height=8)
                     with dpg.group(horizontal=True):
-                        dpg.add_button(label="Start Bot")
-                        dpg.add_button(label="Reload Bot")
-                        dpg.add_button(label="End Bot")
+                        sRButton = dpg.add_button(label="Start Revolt")
+                        rRButton = dpg.add_button(label="Reload Revolt")
+                        eRButton = dpg.add_button(label="End Revolt")
+
+                    with dpg.item_handler_registry() as sRHandler:
+                        dpg.add_item_clicked_handler(callback=revoltStart)
+                    with dpg.item_handler_registry() as rRHandler:
+                        dpg.add_item_clicked_handler(callback=revoltRestart)
+                    with dpg.item_handler_registry() as eRHandler:
+                        dpg.add_item_clicked_handler(callback=revoltEnd)
+
+                    dpg.bind_item_handler_registry(sRButton, sRHandler)
+                    dpg.bind_item_handler_registry(rRButton, rRHandler)
+                    dpg.bind_item_handler_registry(eRButton, eRHandler)
+
         with dpg.tab(label="Bot Config"):
             with dpg.child_window(label="Universal Config", width=1248, height=282, menubar=True):
                 with dpg.menu_bar():
