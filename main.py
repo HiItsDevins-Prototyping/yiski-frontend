@@ -136,6 +136,37 @@ with dpg.window(tag="Yiski", width=1265, height=650, no_resize=True, no_close=Tr
 
                         rConfigSubmitButton = dpg.add_button(label="Submit", callback=rConfigSubmit)
 
+        with dpg.tab(label="Cogs"):
+            with dpg.group(horizontal=True):
+                with dpg.child_window(label="Yiski Discord Cogs", width=620, height=610, menubar=True):
+                    with dpg.menu_bar():
+                        dpg.add_menu(label="Yiski Discord Cogs", )
+                    dpg.add_text("Handle Secret API keys and other configuration for Yiski Discord here")
+                    with dpg.group():
+                        dpg.add_input_text(label="Discord Bot Token",
+                                           hint="Grab your Token from the Discord Devs Portal",
+                                           password=True, on_enter=True)
+                        dpg.add_input_text(label="Discord Owner Role ID",
+                                           hint="Click on profile -> right click an admin role -> Copy ID",
+                                           decimal=True,
+                                           on_enter=True)
+                        dpg.add_input_text(label="Discord Vent Channel ID",
+                                           hint="Right click your vent channel -> Copy ID",
+                                           decimal=True, on_enter=True)
+
+                with dpg.child_window(label="Yiski Revolt Cogs", width=620, height=610, menubar=True):
+                    with dpg.menu_bar():
+                        dpg.add_menu(label="Yiski Revolt Cogs")
+                    dpg.add_text("Handle Secret API keys and other configuration for Yiski Discord here")
+                    with dpg.group():
+                        dpg.add_input_text(label="Revolt Bot Token", hint="Grab your Token from Settings -> My Bots",
+                                           password=True, on_enter=True)
+                        dpg.add_input_text(label="Revolt Owner Role Name",
+                                           hint="Type out exactly how your Owner Role is shown", on_enter=True)
+                        dpg.add_input_text(label="Revolt Vent Channel ID",
+                                           hint="Right click your vent channel -> Copy Channel ID", decimal=True,
+                                           on_enter=True)
+
 
 dpg.create_viewport(title='Yiski Bot', width=1280, height=720, resizable=False, max_width=1280, max_height=720, min_width=1280, min_height=720)
 dpg.setup_dearpygui()
