@@ -4,6 +4,13 @@ import json
 
 dpg.create_context()
 
+def cogButtons(cogText, enableEnabled, disableEnabled):
+    dpg.add_text(cogText)
+    with dpg.group(horizontal=True):
+        dpg.add_button(label="Enable", enabled=enableEnabled)
+        dpg.add_button(label="Reload")
+        dpg.add_button(label="Disable", enabled=disableEnabled)
+
 with dpg.window(tag="Welcome", width=1265, height=8, no_close=True, no_resize=True, no_collapse=True, no_title_bar=True,
                 pos=(0, -2), no_background=True, no_move=True):
     dpg.add_text(
@@ -143,16 +150,13 @@ with dpg.window(tag="Yiski", width=1265, height=650, no_resize=True, no_close=Tr
                         dpg.add_menu(label="Yiski Discord Cogs", )
                     dpg.add_text("Handle Secret API keys and other configuration for Yiski Discord here")
                     with dpg.group():
-                        dpg.add_input_text(label="Discord Bot Token",
-                                           hint="Grab your Token from the Discord Devs Portal",
-                                           password=True, on_enter=True)
-                        dpg.add_input_text(label="Discord Owner Role ID",
-                                           hint="Click on profile -> right click an admin role -> Copy ID",
-                                           decimal=True,
-                                           on_enter=True)
-                        dpg.add_input_text(label="Discord Vent Channel ID",
-                                           hint="Right click your vent channel -> Copy ID",
-                                           decimal=True, on_enter=True)
+                        cogButtons("Chaos", True, False)
+                        cogButtons("Dev Tools", True, False)
+                        cogButtons("Gasp", False, True)
+                        cogButtons("GHR", True, False)
+                        cogButtons("Hello", False, True)
+                        cogButtons("Help", False, True)
+                        cogButtons("Hello", True, False)
 
                 with dpg.child_window(label="Yiski Revolt Cogs", width=620, height=610, menubar=True):
                     with dpg.menu_bar():
